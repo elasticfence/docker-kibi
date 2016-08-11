@@ -16,4 +16,10 @@ else
         sleep 5
 fi
 
-/opt/kibi/bin/kibi
+# Patch demo kibi to use standard ES port
+perl -p -i -e "s/9220/9200/" /opt/kibi/kibi/config/kibi.yml
+perl -p -i -e "s/localhost/0.0.0.0/" /opt/kibi/kibi/config/kibi.yml
+
+# Start Kibi
+/opt/kibi/kibi/bin/kibi &
+tail -f /var/log/elasticsearch/*.log
