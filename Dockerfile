@@ -12,7 +12,7 @@ RUN apt-get update && apt-get clean \
  && chmod +x /dumb-init \
  && curl -sL https://deb.nodesource.com/setup_4.x | bash - \
  && apt-get install -y nodejs \
- && /usr/share/elasticsearch/bin/plugin install https://github.com/QXIP/siren-join/releases/download/2.3.5/siren-join-2.3.5.zip \
+ && /usr/share/elasticsearch/bin/plugin install solutions.siren/siren-join/2.3.5 \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
