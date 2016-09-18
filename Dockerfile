@@ -16,22 +16,13 @@ RUN apt-get update && apt-get clean \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
-RUN cd /opt && wget http://bit.do/kibi-4-5-3-linux-x64-demo-lite-zip \
- && unzip kibi-4-5-3-linux-x64-demo-lite-zip \
- && rm -rf /opt/kibi-4-5-3-linux-x64-demo-lite-zip \
- && mv kibi-4.5.3-linux-x64-demo-lite kibi \
+RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file=kibi-4.5.3-3-linux-x64.zip -O kibi-4.5.3-3-linux-x64.zip\
+ && unzip kibi-4.5.3-3-linux-x64.zip \
+ && rm -rf /opt/kibi-4.5.3-3-linux-x64.zip \
+ && mv kibi-4.5.3-3-linux-x64 kibi \
  && chown -R kibi:kibi /opt/kibi \
- && mv /opt/kibi/elasticsearch/data/kibi-demo /var/lib/elasticsearch/ \
- && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/ \
- && cp /opt/kibi/elasticsearch/config/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml \
- && rm -rf kibi/logstash kibi/elasticsearch
+ && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/ 
 
-RUN perl -p -i -e "s/9220/9200/" /opt/kibi/kibi/config/kibi.yml
-RUN perl -p -i -e "s/localhost/0.0.0.0/" /opt/kibi/kibi/config/kibi.yml
-
-RUN perl -p -i -e "s/9220/9200/" /etc/elasticsearch/elasticsearch.yml
-RUN perl -p -i -e "s/9330/9300/" /etc/elasticsearch/elasticsearch.yml
- 
 COPY entrypoint.sh /opt/
 RUN chmod 755 /opt/entrypoint.sh
 ENV PATH /opt/kibi/kibi/bin:$PATH
