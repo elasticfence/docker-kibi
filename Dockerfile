@@ -16,13 +16,13 @@ RUN apt-get update && apt-get clean \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
-RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file=kibi-4.5.3-3-linux-x64.zip -O kibi-4.5.3-3-linux-x64.zip\
- && unzip kibi-4.5.3-3-linux-x64.zip \
- && rm -rf /opt/kibi-4.5.3-3-linux-x64.zip \
- && mv kibi-4.5.3-3-linux-x64 kibi \
+RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file=kibi-4.5.3-5-linux-x64.zip -O kibi-4.5.3-5-linux-x64.zip\
+ && unzip kibi-4.5.3-5-linux-x64.zip \
+ && rm -rf /opt/kibi-4.5.3-5-linux-x64.zip \
+ && mv kibi-4.5.3-5-linux-x64 kibi \
  && chown -R kibi:kibi /opt/kibi \
  && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/ 
-
+ 
 COPY entrypoint.sh /opt/
 RUN chmod 755 /opt/entrypoint.sh
 ENV PATH /opt/kibi/kibi/bin:$PATH
@@ -31,6 +31,7 @@ ENV PATH /opt/kibi/kibi/bin:$PATH
 EXPOSE 5601 5606
 EXPOSE 9200
 EXPOSE 9300
+EXPOSE 8899
 
 # Exec on start
 ENTRYPOINT ["/dumb-init", "--"]
