@@ -25,8 +25,8 @@ RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file
  
 RUN cd /opt/kibi \
  && ./bin/kibi plugin --install kaae -u https://github.com/elasticfence/kaae/releases/download/snapshot/kaae-latest.tar.gz \
- && ./bin/kibana plugin --install kibana-auth-plugin -u https://github.com/elasticfence/kibana-auth-plugin/releases/download/0.1.1/kauth-latest.tar.gz \
- && ./bin/kibana plugin --install kibrand -u https://github.com/elasticfence/kibrand/archive/0.4.5.zip \
+ && ./bin/kibi plugin --install kibana-auth-plugin -u https://github.com/elasticfence/kibana-auth-plugin/releases/download/0.1.1/kauth-latest.tar.gz \
+ && ./bin/kibi plugin --install kibrand -u https://github.com/elasticfence/kibrand/archive/0.4.5.zip \
  && chown -R kibi:kibi /opt/kibi
  && cd /usr/share/elasticsearch \
  && ./bin/plugin install https://raw.githubusercontent.com/elasticfence/elasticsearch-http-user-auth/2.3.5/jar/elasticfence-2.3.5-SNAPSHOT.zip
