@@ -1,6 +1,6 @@
 <img src="https://avatars3.githubusercontent.com/u/12463357?v=3" />
 # docker-kibi
-Docker container running ```ES 2.3.5``` + ```Siren.join``` + ```Kibi```
+Docker container running ```ES 2.4.1``` + ```Siren.join 2.4.1``` + ```Kibi 4.5.4```
 
 ## About
 Kibi enhances Kibana with features for complex "relational" data.<br>
