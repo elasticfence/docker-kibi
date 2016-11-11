@@ -16,7 +16,7 @@ RUN apt-get update && apt-get clean \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
-RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file=kibi-4.5.4-linux-x64.zip -O kibi-4.5.4-linux-x64.zip \
+RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file=kibi-community-standalone-4.5.4-linux-x64.zip -O kibi-4.5.4-linux-x64.zip \
  && unzip kibi-4.5.4-linux-x64.zip \
  && rm -rf /opt/kibi-4.5.4-linux-x64.zip \
  && mv kibi-4.5.4-linux-x64 kibi \
