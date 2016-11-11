@@ -19,7 +19,7 @@ RUN apt-get update && apt-get clean \
 RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file=kibi-community-standalone-4.5.4-linux-x64.zip -O kibi-4.5.4-linux-x64.zip \
  && unzip kibi-4.5.4-linux-x64.zip \
  && rm -rf /opt/kibi-4.5.4-linux-x64.zip \
- && mv kibi-4.5.4-linux-x64 kibi \
+ && mv kibi-community-standalone-4.5.4-linux-x64 kibi \
  && chown -R kibi:kibi /opt/kibi \
  && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/ 
  
