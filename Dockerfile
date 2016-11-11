@@ -1,5 +1,5 @@
 # Linux OS
-FROM elasticsearch:2.3.5
+FROM elasticsearch:2.4.1
 
 # Maintainer
 MAINTAINER lmangani <lorenzo.mangani@gmail.com>
@@ -12,14 +12,14 @@ RUN apt-get update && apt-get clean \
  && chmod +x /dumb-init \
  && curl -sL https://deb.nodesource.com/setup_4.x | bash - \
  && apt-get install -y nodejs \
- && /usr/share/elasticsearch/bin/plugin install solutions.siren/siren-join/2.3.5 \
+ && /usr/share/elasticsearch/bin/plugin install solutions.siren/siren-join/2.4.1 \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
-RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file=kibi-4.5.3-5-linux-x64.zip -O kibi-4.5.3-5-linux-x64.zip\
- && unzip kibi-4.5.3-5-linux-x64.zip \
- && rm -rf /opt/kibi-4.5.3-5-linux-x64.zip \
- && mv kibi-4.5.3-5-linux-x64 kibi \
+RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file=kibi-community-standalone-4.5.4-linux-x64.zip -O kibi-4.5.4-linux-x64.zip \
+ && unzip kibi-4.5.4-linux-x64.zip \
+ && rm -rf /opt/kibi-4.5.4-linux-x64.zip \
+ && mv kibi-community-standalone-4.5.4-linux-x64 kibi \
  && chown -R kibi:kibi /opt/kibi \
  && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/ 
  
@@ -31,7 +31,7 @@ RUN cd /opt/kibi \
  && ./bin/kibi plugin --install elastic/sense \
  && chown -R kibi:kibi /opt/kibi \
  && cd /usr/share/elasticsearch \
- && ./bin/plugin install https://raw.githubusercontent.com/elasticfence/elasticsearch-http-user-auth/2.3.5/jar/elasticfence-2.3.5-SNAPSHOT.zip
+ && ./bin/plugin install https://raw.githubusercontent.com/elasticfence/elasticsearch-http-user-auth/2.4.1/jar/elasticfence-2.4.1-SNAPSHOT.zip
  
 COPY entrypoint.sh /opt/
 RUN chmod 755 /opt/entrypoint.sh
