@@ -2,7 +2,7 @@
 
 set -e
 
-if [ "$1" = 'docker-kibi' ]; then
+if [ "$1" = 'docker-elasticfence' ]; then
     if [ "$ELASTICSEARCH_URL" -o "$ELASTICSEARCH_PORT_9200_TCP" ]; then
         : ${ELASTICSEARCH_URL:='http://elasticsearch:9200'}
         sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 '$ELASTICSEARCH_URL'!" /opt/kibi/config/kibi.yml
