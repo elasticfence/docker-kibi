@@ -8,6 +8,11 @@ if [ "$1" = 'docker-kibi' ]; then
         sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 '$ELASTICSEARCH_URL'!" /opt/kibi/config/kibi.yml
     else
         "No ES URL parameter, starting local instance... "
+        # Patch demo ES to listen to all interfaces using elasticfence authentication
+        echo "network.host: 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
+        echo "elasticfence.disabled: false" >> /etc/elasticsearch/elasticsearch.yml
+        echo "elasticfence.root.password: elasticFence" >> /etc/elasticsearch/elasticsearch.yml 
+        echo "elasticfence.whitelist: [\"127.0.0.1\", \"172.17.0.2\"]" >> /etc/elasticsearch/elasticsearch.yml 
         service elasticsearch start
         sleep 5
     fi
