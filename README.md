@@ -1,21 +1,35 @@
 <img src="https://avatars3.githubusercontent.com/u/12463357?v=3" />
-# docker-kibi
-Docker container running ```ES 2.3.5``` + ```Siren.join``` + ```Kibi```
+# docker-elasticfence
+Docker container running the Elasticfence Stack
 
-## About
-Kibi enhances Kibana with features for complex "relational" data.<br>
-To demonstrate this, this instance is loaded with 4 kinds of interconnected entities:
-
-```Articles (n---1) Companies (1---n) Investments (n---1) Investors```
-
-Kibi allows set to set navigation. One can start from a set (e.g., Articles this month that mentions "hadoop") , then rotate to the "companies mentioned here" then again rotate to the "investments they have received" (and see the total), and finally see the "investors who backed these" (revealing where they're mostly located), and so on.
+- Elasticsearch 2.4.1 
+- Kibi 4.5.4 + Siren 2.4.1
+- Elasticfence Auth _(root/elasticFence)_
+- Kibana-auth-elasticfence
+- KiBrand 0.4.5
+- KaaE 0.0.9
+- Sense/Timelion
 
 #### Usage
 
-Run the image using local Elastic instance (w/ siren-join)
+Install mixed ES container on new host w/ authentication (default: root/elasticFence)
 ```
-$ docker run -i -t -p 9200:9200 -p 5601:5606 qxip/docker-kibi
+docker pull qxip/docker-elasticfence
 ```
+Create stateful data volume
+```
+docker volume create -o size=20GB esdata
+```
+Run container and map ports
+```
+docker run -tid --name elk -p 9200:9200 -p 5606:5606 -v esdata:/usr/share/elasticsearch/data qxip/docker-elasticfence
+```
+Connect shell to container
+```
+docker exec -ti elk /bin/bash
+```
+
+##### External ES Connector
 
 Run the image using remote Elastic instance
 ```
