@@ -18,11 +18,11 @@ docker pull qxip/docker-elasticfence
 ```
 Create stateful data volume
 ```
-docker volume create -o size=20GB esdata
+docker volume create -o size=20GB --name esdata
 ```
 Run container and map ports
 ```
-docker run -tid --name elk -p 9200:9200 -p 5606:5606 -v esdata:/usr/share/elasticsearch/data qxip/docker-elasticfence
+docker run -tid --name elk -p 9200:9200 -p 5606:5606 -v esdata:/usr/share/elasticsearch qxip/docker-elasticfence
 ```
 Connect shell to container
 ```
