@@ -21,5 +21,5 @@ perl -p -i -e "s/9220/9200/" /opt/kibi/config/kibi.yml
 perl -p -i -e "s/localhost/0.0.0.0/" /opt/kibi/config/kibi.yml
 
 # Start Kibi
-/opt/kibi/bin/kibi &
+/etc/ini.d/kibi start
 tail -f /var/log/elasticsearch/*.log
