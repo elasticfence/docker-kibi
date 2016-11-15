@@ -21,7 +21,7 @@ RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file
  && rm -rf /opt/kibi-4.5.4-linux-x64.zip \
  && mv kibi-community-standalone-4.5.4-linux-x64 kibi \
  && chown -R kibi:kibi /opt/kibi \
- && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/ 
+ && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/
  
 RUN cd /opt/kibi \
  && ./bin/kibi plugin --install kaae -u https://github.com/elasticfence/kaae/releases/download/snapshot/kaae-latest.tar.gz \
@@ -36,6 +36,11 @@ RUN cd /opt/kibi \
 COPY entrypoint.sh /opt/
 RUN chmod 755 /opt/entrypoint.sh
 ENV PATH /opt/kibi/kibi/bin:$PATH
+
+# Kibi init files
+COPY etc/default/kibi /etc/default/kibi
+COPY etc/init.d/kibi /etc/init.d/kibi
+RUN chmod +x /etc/init.d/kibi
 
 # Expose Default Port
 EXPOSE 5601 5606
