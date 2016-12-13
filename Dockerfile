@@ -13,6 +13,7 @@ RUN apt-get update && apt-get clean \
  && curl -sL https://deb.nodesource.com/setup_4.x | bash - \
  && apt-get install -y nodejs \
  && /usr/share/elasticsearch/bin/plugin install solutions.siren/siren-join/2.4.1 \
+ && npm install phantomjs-prebuilt -g \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
@@ -24,7 +25,7 @@ RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file
  && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/
  
 RUN cd /opt/kibi \
- && ./bin/kibi plugin --install kaae -u https://github.com/elasticfence/kaae/releases/download/snapshot/kaae-latest.tar.gz \
+ && ./bin/kibi plugin --install sentinl -u https://github.com/sirensolutions/sentinl/releases/download/snapshot/sentinl-latest.tar.gz \
  && ./bin/kibi plugin --install kibana-auth-plugin -u https://github.com/elasticfence/kibana-auth-elasticfence/releases/download/snapshot/kauth-latest.tar.gz \
  && ./bin/kibi plugin --install kibrand -u https://github.com/elasticfence/kibrand/archive/0.4.5.zip \
  && ./bin/kibi plugin --install elastic/timelion \
