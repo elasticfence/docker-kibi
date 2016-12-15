@@ -20,6 +20,10 @@ fi
 perl -p -i -e "s/9220/9200/" /opt/kibi/config/kibi.yml
 perl -p -i -e "s/localhost/0.0.0.0/" /opt/kibi/config/kibi.yml
 
+# create admin user 
+curl "localhost:9200/_httpuserauth?mode=adduser&username=admin&password=elasticFence" -u root:elasticFence
+curl "localhost:9200/_httpuserauth?mode=updateindex&username=admin&index=/.*" -u root:elasticFence
+
 # Start Kibi
 /etc/init.d/kibi start
 tail -f /var/log/elasticsearch/*.log
