@@ -7,6 +7,7 @@ if [ ! -z "$ELASTICSEARCH_URL" ]; then
         sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 '$ELASTICSEARCH_URL'!" /opt/kibi/config/kibi.yml
         # Remove Auth Plugin
         /opt/kibi/bin/kibi plugin -r kibana-auth-plugin
+        echo "Remote Server! No ES Logs available." > /var/log/elasticsearch/nolog.log
 else
         echo "No ES URL parameter, starting local instance... "
         # Patch demo ES to listen to all interfaces using elasticfence authentication
