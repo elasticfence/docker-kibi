@@ -1,5 +1,5 @@
 # Linux OS
-FROM elasticsearch:2.4.2
+FROM elasticsearch:2.4.1
 
 # Maintainer
 MAINTAINER lmangani <lorenzo.mangani@gmail.com>
