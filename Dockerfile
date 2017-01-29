@@ -17,7 +17,7 @@ RUN apt-get update && apt-get clean \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
-RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file=kibi-community-standalone-4.6.3-linux-x64.zip&userId=17001229734  \
+RUN cd /opt && wget "https://download.support.siren.solutions/kibi/community?file=kibi-community-standalone-4.6.3-linux-x64.zip&userId=17001229734"  \
  && unzip community?file=kibi-community-standalone-4.6.3-linux-x64.zip \
  && rm -rf community?file=kibi-community-standalone-4.6.3-linux-x64.zip \
  && mv kibi-community-standalone-4.6.3-linux-x64 kibi \
