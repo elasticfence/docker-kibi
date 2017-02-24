@@ -7,7 +7,7 @@ Docker container running the Elasticfence Stack
 - Elasticfence Auth _(root/elasticFence)_
 - Kibana-auth-elasticfence
 - KiBrand 0.4.5
-- KaaE 0.0.9
+- Sentinl 4.x Snapshot
 - Sense/Timelion
 
 #### Usage
