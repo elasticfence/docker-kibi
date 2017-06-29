@@ -26,7 +26,7 @@ RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file
  
 RUN cd /opt/kibi \
  && ./bin/kibi plugin --install sentinl -u https://github.com/sirensolutions/sentinl/releases/download/tag-4.6.4-2/sentinl.tar.gz \
- && ./bin/kibi plugin --install kibana-auth-plugin -u https://github.com/elasticfence/kibana-auth-elasticfence/releases/download/snapshot/kauth-latest.tar.gz \
+ # && ./bin/kibi plugin --install kibana-auth-plugin -u https://github.com/elasticfence/kibana-auth-elasticfence/releases/download/snapshot/kauth-latest.tar.gz \
  && ./bin/kibi plugin --install kibrand -u https://github.com/elasticfence/kibrand/archive/0.4.5.zip \
  && ./bin/kibi plugin --install kibana-time-plugin -u https://github.com/nreese/kibana-time-plugin/archive/4.x.zip \
  && ./bin/kibi plugin --install elastic/timelion \
