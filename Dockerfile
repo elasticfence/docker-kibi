@@ -1,6 +1,8 @@
 # Linux OS
 FROM elasticsearch:2.4.1
 
+# REV 140930062017
+
 # Maintainer
 MAINTAINER lmangani <lorenzo.mangani@gmail.com>
 
