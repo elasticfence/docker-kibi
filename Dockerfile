@@ -1,7 +1,7 @@
 # Linux OS
-FROM elasticsearch:2.4.1
+FROM elasticsearch:2.4.4
 
-# REV 140930062017
+# REV 113606072017
 
 # Maintainer
 MAINTAINER lmangani <lorenzo.mangani@gmail.com>
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get clean \
  && chmod +x /dumb-init \
  && curl -sL https://deb.nodesource.com/setup_4.x | bash - \
  && apt-get install -y nodejs \
- && /usr/share/elasticsearch/bin/plugin install solutions.siren/siren-join/2.4.1 \
+ && /usr/share/elasticsearch/bin/plugin install solutions.siren/siren-join/2.4.4 \
  && npm install phantomjs-prebuilt -g \
  && apt-get autoremove \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -28,14 +28,14 @@ RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file
  
 RUN cd /opt/kibi \
  && ./bin/kibi plugin --install sentinl -u https://github.com/sirensolutions/sentinl/releases/download/tag-4.6.4-4/sentinl.zip \
- && ./bin/kibi plugin --install kibana-auth-plugin -u https://github.com/elasticfence/kibana-auth-elasticfence/releases/download/snapshot/kauth-latest.tar.gz \
+ && ./bin/kibi plugin --install kibana-auth-plugin -u https://github.com/elasticfence/kibana-auth-elasticfence/releases/download/4.x/kauth-latest.tar.gz \
  && ./bin/kibi plugin --install kibrand -u https://github.com/elasticfence/kibrand/archive/0.4.5.zip \
  && ./bin/kibi plugin --install kibana-time-plugin -u https://github.com/nreese/kibana-time-plugin/archive/4.x.zip \
  && ./bin/kibi plugin --install elastic/timelion \
  && ./bin/kibi plugin --install elastic/sense \
  && chown -R kibi:kibi /opt/kibi \
  && cd /usr/share/elasticsearch \
- && ./bin/plugin install https://raw.githubusercontent.com/elasticfence/elasticsearch-http-user-auth/2.4.1/jar/elasticfence-2.4.1-SNAPSHOT.zip
+ && ./bin/plugin install https://raw.githubusercontent.com/elasticfence/elasticsearch-http-user-auth/2.4.4/jar/elasticfence-2.4.4-SNAPSHOT.zip
  
 COPY entrypoint.sh /opt/
 RUN chmod 755 /opt/entrypoint.sh
