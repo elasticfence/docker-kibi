@@ -34,7 +34,7 @@ RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file
 RUN cd /opt/kibi/installedPlugins \
  && git clone -b 4.x https://github.com/sbeyn/kibana-plugin-gauge-sg gauge-sg \
  && git clone -b 4.x https://github.com/sbeyn/kibana-plugin-traffic-sg traffic-sg \
- && git clone -b 4.x  https://github.com/dlumbrer/kbn_network kbn_network \
+ && git clone -b 4.x  https://github.com/dlumbrer/kbn_network kbn_network && cd kbn_network && npm install && cd .. \
  && chown -R kibi:kibi /opt/kibi
 
 RUN cd /opt/kibi \
