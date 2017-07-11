@@ -9,7 +9,7 @@ MAINTAINER lmangani <lorenzo.mangani@gmail.com>
 RUN groupadd -r kibi && useradd -r -m -g kibi kibi
 
 # Setup Packages & Permissions
-RUN apt-get update && apt-get clean \
+RUN apt-get update && apt-get install git && apt-get clean \
  && wget -O /dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.1.3/dumb-init_1.1.3_amd64 \
  && chmod +x /dumb-init \
  && curl -sL https://deb.nodesource.com/setup_4.x | bash - \
@@ -25,7 +25,17 @@ RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file
  && mv kibi-community-standalone-4.6.4-1-linux-x64 kibi \
  && chown -R kibi:kibi /opt/kibi \
  && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/
+
+RUN cd /tmp \
+ && wget https://github.com/dlumbrer/kbn_network/archive/Kibana-4.x.tar.gz \
+ && tar zxvf Kibana-4.x.tar.gz && mv kbn_network-Kibana-4.x /opt/kibi/installedPlugins/kbn_network \
+ && cd /opt/kibi/installedPlugins/kbn_network && npm install
  
+RUN cd /opt/kibi/installedPlugins \
+ && git clone -b 4.x https://github.com/sbeyn/kibana-plugin-gauge-sg gauge-sg \
+ && git clone -b 4.x https://github.com/sbeyn/kibana-plugin-traffic-sg traffic-sg \
+ && git clone -b 4.x  https://github.com/dlumbrer/kbn_network kbn_network \
+
 RUN cd /opt/kibi \
  && ./bin/kibi plugin --install sentinl -u https://github.com/sirensolutions/sentinl/releases/download/tag-4.6.4-4/sentinl.zip \
  && ./bin/kibi plugin --install kibana-auth-plugin -u https://github.com/elasticfence/kibana-auth-elasticfence/releases/download/snapshot/kauth-latest.tar.gz \
@@ -36,7 +46,7 @@ RUN cd /opt/kibi \
  && chown -R kibi:kibi /opt/kibi \
  && cd /usr/share/elasticsearch \
  && ./bin/plugin install https://raw.githubusercontent.com/elasticfence/elasticsearch-http-user-auth/2.4.1/jar/elasticfence-2.4.1-SNAPSHOT.zip
- 
+
 COPY entrypoint.sh /opt/
 RUN chmod 755 /opt/entrypoint.sh
 ENV PATH /opt/kibi/kibi/bin:$PATH
