@@ -25,6 +25,12 @@ RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file
  && mv kibi-community-standalone-4.6.4-1-linux-x64 kibi \
  && chown -R kibi:kibi /opt/kibi \
  && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/
+
+RUN cd /opt/kibi/installedPlugins \
+ && git clone -b 4.x https://github.com/sbeyn/kibana-plugin-gauge-sg gauge-sg \
+ && git clone -b 4.x https://github.com/sbeyn/kibana-plugin-traffic-sg traffic-sg \
+ && git clone -b 4.x  https://github.com/elasticfence/kbn_network kbn_network && cd kbn_network && npm install && cd .. \
+ && chown -R kibi:kibi /opt/kibi
  
 RUN cd /opt/kibi \
  && ./bin/kibi plugin --install sentinl -u https://github.com/sirensolutions/sentinl/releases/download/tag-4.6.4-4/sentinl.zip \
