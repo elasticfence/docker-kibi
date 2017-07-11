@@ -26,15 +26,16 @@ RUN cd /opt && wget https://download.support.siren.solutions/kibi/community?file
  && chown -R kibi:kibi /opt/kibi \
  && chown -R elasticsearch:elasticsearch /var/lib/elasticsearch/
 
-RUN cd /tmp \
- && wget https://github.com/dlumbrer/kbn_network/archive/Kibana-4.x.tar.gz \
- && tar zxvf Kibana-4.x.tar.gz && mv kbn_network-Kibana-4.x /opt/kibi/installedPlugins/kbn_network \
- && cd /opt/kibi/installedPlugins/kbn_network && npm install
+#RUN cd /tmp \
+# && wget https://github.com/dlumbrer/kbn_network/archive/Kibana-4.x.tar.gz \
+# && tar zxvf Kibana-4.x.tar.gz && mv kbn_network-Kibana-4.x /opt/kibi/installedPlugins/kbn_network \
+# && cd /opt/kibi/installedPlugins/kbn_network && npm install
  
 RUN cd /opt/kibi/installedPlugins \
  && git clone -b 4.x https://github.com/sbeyn/kibana-plugin-gauge-sg gauge-sg \
  && git clone -b 4.x https://github.com/sbeyn/kibana-plugin-traffic-sg traffic-sg \
  && git clone -b 4.x  https://github.com/dlumbrer/kbn_network kbn_network \
+ && chown -R kibi:kibi /opt/kibi
 
 RUN cd /opt/kibi \
  && ./bin/kibi plugin --install sentinl -u https://github.com/sirensolutions/sentinl/releases/download/tag-4.6.4-4/sentinl.zip \
