@@ -9,7 +9,7 @@ MAINTAINER lmangani <lorenzo.mangani@gmail.com>
 RUN groupadd -r kibi && useradd -r -m -g kibi kibi
 
 # Setup Packages & Permissions
-RUN apt-get update && apt-get clean \
+RUN apt-get update && apt-get -y install git && apt-get clean \
  && wget -O /dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.1.3/dumb-init_1.1.3_amd64 \
  && chmod +x /dumb-init \
  && curl -sL https://deb.nodesource.com/setup_4.x | bash - \
